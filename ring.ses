@@ -1,0 +1,120 @@
+load_file("nrngui.hoc")
+objectvar save_window_, rvp_
+objectvar scene_vector_[4]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+
+//Begin ArtCellGUI[0]
+{
+load_file("netbild.hoc")
+}
+ocbox_ = new ArtCellGUI(1)
+{object_push(ocbox_)}
+{
+tobj = new MechanismStandard("NetStim")
+tobj.set("interval", 3, 0)
+tobj.set("number", 1e+09, 0)
+tobj.set("start", 10, 0)
+tobj.set("noise", 0.2, 0)
+}
+{append(tobj, "S")}
+{
+tobj = new MechanismStandard("IntFire1")
+tobj.set("tau", 19, 0)
+tobj.set("refrac", 1, 0)
+}
+{append(tobj, "IF1")}
+{object_pop()}
+{
+ocbox_.map("ArtCellGUI[0]", 6, 105, 449.28, 291.84)
+}
+objref ocbox_
+//End ArtCellGUI[0]
+
+
+//Begin NetGUI[0]
+{
+load_file("netbild.hoc")
+}
+{ocbox_ = new NetGUI(1)}
+{object_push(ocbox_)}
+{mapold2new = new Vector()  missing = new List()}
+original_type("S")
+original_type("IF1")
+newnode(1, -73, 49)
+newnode(1, -1, 49)
+newnode(1, -39, -6)
+newnode(0, -138, 50)
+newnode(0, 39, 93)
+newnode(0, -9, -67)
+newedge(3, 0, 0, 0.6, 1)
+newedge(4, 1, 0, 0.6, 1)
+newedge(5, 2, 0, 0.6, 1)
+newedge(0, 1, 0, -1.5, 1)
+newedge(1, 2, 0, -1.5, 1)
+newedge(2, 0, 0, -1.5, 1)
+{create_ = 1  create1()}
+{g.size(-194.808,116.108,-116.878,173.34)}
+{object_pop()}
+{
+ocbox_.map("NetGUI[0]", 6, 437, 449.28, 327.36)
+}
+objref ocbox_
+//End NetGUI[0]
+
+
+//Begin SpikePlot[0] for NetData[0]
+{
+load_file("netbild.hoc")
+}
+{ocbox_ = new SpikePlot(NetData[0],1)}
+{object_push(ocbox_)}
+mode = 1
+fwindow = 100
+binwidth = 0.1
+build()
+{g.size(0,300,-0.3,6)}
+{object_pop()}
+{
+ocbox_.map("SpikePlot[0] for NetData[0]", 780, 104, 304.32, 333.12)
+}
+objref ocbox_
+//End SpikePlot[0] for NetData[0]
+
+{
+xpanel("RunControl", 0)
+v_init = -65
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 0
+xvalue("t","t", 2 )
+tstop = 300
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 34322.6
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 40
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+xcheckbox("Quiet",&stdrun_quiet,"")
+realtime = 0
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(486,105)
+}
+
+//Begin VariableTimeStep
+{
+ocbox_ = NumericalMethodPanel[0]
+ocbox_ = ocbox_.b1
+ocbox_.map("VariableTimeStep", 486, 497, 272.64, 106.56)
+}
+objref ocbox_
+//End VariableTimeStep
+
+objectvar scene_vector_[1]
+{doNotify()}

@@ -1,0 +1,25 @@
+load_file("nrngui.hoc")
+load_file("ring.ses")
+cvode_active(1)
+run()
+
+print "Model of recurrent cyclic inhibition as described on p.119 of Friesen and"
+print "Friesen (1994), which was slightly modified from Szekely's model (1965)."
+print "The conditions for oscillation are:"
+print "(1) the loop must contain an odd number of neurons,"
+print "(2) each of which can significantly inhibit its target,"
+print "and (3) the excitatory drive must be strong enough so the"
+print "   loop neurons will spike when released from inhibition"
+print " "
+print "In the SpikePlot, the bottom three trains show the alternating activity of"
+print "the loop neurons.  The top three trains are the afferent excitatory streams."
+print " "
+print "To launch a new simulation, press Init & Run in the RunControl panel"
+print " "
+print "For questions about this implementation, contact ted.carnevale@yale.edu"
+print " "
+print "REFERENCES"
+print "Friesen, W.O. and Friesen, J.A..  NeuroDynamix.  New York: Oxford"
+print "  University Press, 1994."
+print "Szekely, G..  Logical network for controlling limb movements in urodela."
+print "  Acta Physiologica Academiae Scientiarum Hungaricae 27:285-289, 1965."
