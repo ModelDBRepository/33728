@@ -21,3 +21,10 @@ I. Function of networks with cyclic inhibitions.
   Kybernetik 5:89-103, 1968.
 Friesen, W.O. and Friesen, J.A..  NeuroDynamix.  New York: Oxford
   University Press, 1994.
+
+Updates
+
+20240226 Use noiseFromRandom123 for result identity between 8.2 and 9.0
+  Each launch now produces same result independent of NEURON version.
+  However each press of the Init&Run button show statistically independent
+  results.

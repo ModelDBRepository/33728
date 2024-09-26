@@ -1,5 +1,19 @@
 load_file("nrngui.hoc")
 load_file("ring.ses")
+
+// NetStim.noise > 0 but noiseFromRandom123 needs to be specified
+// in order to give same results for NEURON v7 onward
+objref fih
+id2 = 0
+proc setranvar() { local i  localobj nslist
+    nslist = new List("NetStim")
+    for i = 0, nslist.count() - 1 {
+        nslist.o(i).noiseFromRandom123(i, id2, 0)
+    }
+    id2 += 1
+}
+fih = new FInitializeHandler(0, "setranvar()")
+
 cvode_active(1)
 run()
 
